@@ -1,0 +1,44 @@
+<html>
+	<head>
+		<title>add</title>
+		<style>
+			#hello{
+				height:550px;
+				width:600px;
+			}
+			#hworld{
+				position:relative;
+				height:50px;
+				width:160px;
+				top: 0px
+				left: 0px
+			}
+		</style>
+	</head>
+	<body bgColor='green'>
+		<div id="hello" bgColor="green">
+		<div id="hworld" class="worlds" bgColor="green" top="200px" left="200px" >HELLO WORLD.....</div>
+		</div>
+		<script>
+	function prints(st){
+		txts.innerHTML+=st+"<br>"
+	}
+	function cls(){
+		txts.innerHTML="";
+	}
+	function f1(){
+		var f=0;
+		cls();
+		for (f=0;f<16;f++)prints(f.toString());
+				
+	}
+	var txts=document.getElementById("hworld");	
+	txts.innerHTML="xxxxxxxx";
+	f1();
+	
+	
+
+
+	</script>
+	</body>
+</html>

@@ -1,0 +1,49 @@
+<html>
+	<head>
+		<title>
+add
+		</title>
+		
+	</head>
+	<body bgColor='green'>
+		<div id="txt" bgColor="green" >
+			
+		</div>
+		<script>
+	var txts=document.getElementById("txt");
+	
+	function appendChar(strings,charc){
+		var sstrings=strings;
+		if(charc==12){
+			sstrings+="<br>";
+		}else{
+			if(charc>31 && charc < 127) sstrings+=String.fromCharCode(charc);
+		}
+		return sstrings;
+	}
+	function prints(stringss){
+		txts.innerHTML+=stringss;
+	}
+	function cls(){
+		txts.innerHTML="";
+	}
+	fetch("toStrings.wasm") 
+   .then(bytes => bytes.arrayBuffer()) 
+   .then(mod => WebAssembly.compile(mod)) 
+   .then(module => { 
+      let instance = new WebAssembly.Instance(module);
+      	
+x=0;
+	d=0;
+	e=0;
+	cls();
+	var sstring=""
+	e=(instance.exports.eeppromX(0));
+	for(d=0;d<e;d++)sstring=appendChar(sstring,instance.exports.eeppromX(d+1));
+	prints(sstring);
+	
+});
+
+	</script>
+	</body>
+</html>

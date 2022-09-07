@@ -1,0 +1,34 @@
+<html>
+	<head>
+		<title>
+add
+		</title>
+		
+	</head>
+	<body bgColor='green'>
+		<div id="txt" bgColor="green" >
+			
+		</div>
+		<script>
+	var txts=document.getElementById("txt");
+	fetch("hcase.wasm") 
+   .then(bytes => bytes.arrayBuffer()) 
+   .then(mod => WebAssembly.compile(mod)) 
+   .then(module => { 
+      let instance = new WebAssembly.Instance(module);
+      let op=instance.exports;
+      var b=0;
+      var c=0;
+      c=(instance.exports.hcase());
+      var array2=new Int8Array(op.memory.buffer,c,30);
+      for (b=0;b<50;b++){
+			txts.innerHTML+=String.fromCharCode(array2[b]);
+			if(array2[b]==0)b=60;
+		}
+	  
+   });
+		
+
+	</script>
+	</body>
+</html>

@@ -11,16 +11,18 @@ add
 		</div>
 		<script>
 	var txts=document.getElementById("txt");
+	txts.innerHTML+="+++++++++";
 	fetch("lcase.wasm") 
    .then(bytes => bytes.arrayBuffer()) 
    .then(mod => WebAssembly.compile(mod)) 
    .then(module => { 
       let instance = new WebAssembly.Instance(module);
+      txts.innerHTML+="---------------";
       let op=instance.exports;
       var b=0;
       var c=0;
-      c=(instance.exports.lcase());
-      var array2=new Int8Array(op.memory.buffer,c,30);
+      c=(instance.exports.lcases());
+      var array2=new Int8Array(op.memory.buffer,c,90);
       for (b=0;b<50;b++){
 			txts.innerHTML+=String.fromCharCode(array2[b]);
 			if(array2[b]==0)b=60;

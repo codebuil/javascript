@@ -1,34 +1,35 @@
-//https://wasdk.github.io/WasmFiddle/
-char *strcopys(char *c,char *cc){
-int ff=0;
-char *ccc;
-	ccc=c+0;
-	for(ff=0;ff<6000;ff++){
-		
-		if (cc[ff]==0){
-			ccc=c+ff;
-			ff=7000;
+#include<stdio.h>
+char i[6000];
+int strcopys(char *c,int indexs){
+		int ii;
+		for (ii=0;ii<5000;ii++){
+			if(c[ii]==0){
+				i[indexs+ii]=0;
+				return indexs+ii;
 			}else{
-				c[ff]=cc[ff];
-				}
-	}
-
-	return ccc;
-	}
+				i[indexs+ii]=c[ii];
+			}
+		}
+		return indexs;
+}
 char *llists(){
-	int ff=0;
-	char c=0;
+	int indexs=0;
+	char r[20]="0\0\0";
 	char *cc;
-	char ii[5000];
-	cc=ii;
-	ii[0]=0; 
-	cc=strcopys(cc,"\n<br>Title\n<br>");
-	for(ff=0;ff<16;ff++){
-		cc=strcopys(cc,"\n<br>%d item\n<br>");
-		
+	int f;
+	i[0]=0;
+	for(f=0;f<16;f++){
+		indexs=strcopys("\n<br>",indexs);
+		r[0]='0'+f;
+		if(f>9)r[0]='A'+f-10;
+		indexs=strcopys(r,indexs);
+		indexs=strcopys(" item.\n<br>",indexs);
 	}
-	cc[1]=0;
-	cc=ii;
+	cc=i;
 	return cc;
 }
-
+int main(){
+	printf("\e[42;30m\n");
+	printf(llists());
+	return 0;
+}
